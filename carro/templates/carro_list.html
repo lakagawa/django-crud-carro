@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'layout.html' %}
+
+{% block content %}
+    <table class="pure-table">
+        <thead>
+        <tr>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Ano</th>
+            <th>Cadastrado em</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for carro in lista %}
+            <tr>
+                <td>{{ carro.modelo }}</td>
+                <td>{{ carro.marca }}</td>
+                <td>{{ carro.ano }}</td>
+                <td>{{ carro.created_date }}</td>
+                <td>
+                    {#                    <a href="{% url 'editar_carro' pk=carro.pk %}">#}
+                    {#                        <i class="material-icons">mode_edit</i>#}
+                    {#                    </a>#}
+                    {#                    <a href="{% url 'remover_carro' pk=carro.pk %}">#}
+                    {#                        <i class="material-icons">delete</i>#}
+                    {#                    </a>#}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
