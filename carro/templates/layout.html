@@ -4,12 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CRUD Simples Carros</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-<div>
+<header>
+    <div class="header-nav ">
+        <div class="header-left">
+            <div class="pure-menu pure-menu-horizontal">
+                <a href="/" class="pure-menu-heading pure-menu-link"><i class="fa fa-car" aria-hidden="true"></i></a>
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-item">
+                        <a href="{% url 'cadastrar_carro' %}" class="pure-menu-link">Cadastro</a>
+                    </li>
+                    <li class="pure-menu-item">
+                        <a href="{% url 'carro_list' %}" class="pure-menu-link">Lista</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="pure-menu pure-menu-horizontal">
+                <ul class="pure-menu-list">
+                    {% if user.is_authenticated %}
+                        <li class="pure-menu-item">
+                            <a href="/" class="pure-menu-heading pure-menu-link">Welcome, {{ user.username }}.</a>
+                        </li>
+
+                        <li class="pure-menu-item">
+                            <a href="{% url 'logout' %}" class="pure-menu-link">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="pure-menu-item">
+                            <a href="{% url 'login' %}" class="pure-menu-link">Login</a>
+                        </li>
+
+                        <li class="pure-menu-item">
+                            <a href="{% url 'cadastrar_usuario' %}" class="pure-menu-link">Registrar se</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
     {% block content %}
     {% endblock content %}
 </div>
+<footer>
+    <small>Creditos Gaooo!!!</small>
+</footer>
 </body>
 </html>

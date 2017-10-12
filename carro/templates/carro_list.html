@@ -1,30 +1,28 @@
 {% extends 'layout.html' %}
 
+
 {% block content %}
-    <table class="pure-table">
-        <thead>
-        <tr>
-            <th>Modelo</th>
-            <th>Marca</th>
-            <th>Ano</th>
-            <th>Cadastrado em</th>
-            <th></th>
-        </tr>
-        </thead>
+    <h4 class="sp__purple">Lista de carros</h4>
+    <table class="pure-table pure-table-striped">
+        {% include 'table_header.html' %}
         <tbody>
         {% for carro in lista %}
             <tr>
+                <td>{{ carro.pk }}</td>
                 <td>{{ carro.modelo }}</td>
                 <td>{{ carro.marca }}</td>
                 <td>{{ carro.ano }}</td>
                 <td>{{ carro.created_date }}</td>
                 <td>
-                    {#                    <a href="{% url 'editar_carro' pk=carro.pk %}">#}
-                    {#                        <i class="material-icons">mode_edit</i>#}
-                    {#                    </a>#}
-                    {#                    <a href="{% url 'remover_carro' pk=carro.pk %}">#}
-                    {#                        <i class="material-icons">delete</i>#}
-                    {#                    </a>#}
+                    {% if user.is_authenticated %}
+                        <a class="pure-button" title="Editar" href="{% url 'editar_carro' pk=carro.pk %}">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+
+                        <a class="pure-button" title="Deletar" href="{% url 'remover_carro' pk=carro.pk %}">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}

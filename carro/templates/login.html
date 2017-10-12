@@ -1,14 +1,16 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+
     <form method="post" class="pure-form pure-form-aligned">
         {% csrf_token %}
-        <fieldset class="fieldset__purple">
-            <legend class="legend__purple">Cadastro de carros</legend>
+        <fieldset>
+            <legend>Login</legend>
             <div class="pure-control-group">
-            {{ form.as_p }}
+                {{ form.as_p }}
             </div>
         </fieldset>
-        <button type="submit" class="pure-button">Salvar</button>
+        <button type="submit" class="pure-button">Entrar</button>
     </form>
+
 {% endblock content %}
